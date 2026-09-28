@@ -258,6 +258,58 @@ function add(id){
 }
 
 
+function removeOne(id){
+
+  const item = cart.find(x => x.id === id);
+
+  if(!item) return;
+
+  item.qty--;
+
+  if(item.qty <= 0){
+    cart = cart.filter(x => x.id !== id);
+  }
+
+  updateCart();
+
+  if(cart.length === 0){
+    closeModal();
+  }else{
+    sendOrder();
+  }
+}
+
+function removeProduct(id){
+
+  cart = cart.filter(x => x.id !== id);
+
+  updateCart();
+
+  if(cart.length === 0){
+    closeModal();
+  }else{
+    sendOrder();
+  }
+}
+
+function cancelOrder(){
+
+  if(cart.length === 0) return;
+
+  const confirmCancel = confirm(
+    '¿Seguro que quieres cancelar todo el pedido?'
+  );
+
+  if(!confirmCancel) return;
+
+  cart = [];
+
+  updateCart();
+
+  closeModal();
+}
+
+
 // ======================================================
 // ACTUALIZAR BARRA DEL CARRITO
 // ======================================================
@@ -304,56 +356,72 @@ function updateCart(){
 function sendOrder(){
 
   if(cart.length === 0){
-
     alert('Primero agrega productos a tu pedido.');
-
     return;
   }
 
   const box = document.getElementById('orderItems');
 
-  if(box){
+  box.innerHTML = cart.map(x => {
 
-    box.innerHTML = cart.map(x => {
+    const subtotal = (x.price || 0) * x.qty;
 
-      const subtotal =
-        (x.price || 0) * x.qty;
+    return `
+      <div class="order-row">
+        <div>
+          <b>${x.qty} x ${x.name}</b>
+          <div style="margin-top:6px;">
+            <button
+              type="button"
+              onclick="removeOne('${x.id}')"
+              style="
+                border:none;
+                background:#eee;
+                padding:6px 10px;
+                border-radius:8px;
+                cursor:pointer;
+                font-weight:700;
+              "
+            >
+              −
+            </button>
 
-      return `
-        <div class="order-row">
-
-          <span>
-            ${x.qty} x ${x.name}
-          </span>
-
-          <b>
-            ${x.price ? `Bs ${subtotal}` : 'Consultar'}
-          </b>
-
+            <button
+              type="button"
+              onclick="removeProduct('${x.id}')"
+              style="
+                border:none;
+                background:#f3dede;
+                color:#a33;
+                padding:6px 10px;
+                border-radius:8px;
+                cursor:pointer;
+                font-weight:700;
+                margin-left:6px;
+              "
+            >
+              Quitar
+            </button>
+          </div>
         </div>
-      `;
 
-    }).join('');
-
-  }
-
+        <b>
+          ${x.price ? `Bs ${subtotal}` : 'Consultar'}
+        </b>
+      </div>
+    `;
+  }).join('');
 
   const total = cart.reduce(
     (sum,item) => sum + (item.price || 0) * item.qty,
     0
   );
 
-
-  const orderTotal =
-    document.getElementById('orderTotal');
+  const orderTotal = document.getElementById('orderTotal');
 
   if(orderTotal){
-
-    orderTotal.textContent =
-      total ? `Bs ${total}` : 'A confirmar';
-
+    orderTotal.textContent = total ? `Bs ${total}` : 'A confirmar';
   }
-
 
   const radio = document.querySelector(
     `input[name="serviceType"][value="${serviceType}"]`
@@ -363,21 +431,12 @@ function sendOrder(){
     radio.checked = true;
   }
 
-
-  const modal =
-    document.getElementById('orderModal');
+  const modal = document.getElementById('orderModal');
 
   if(modal){
-
     modal.classList.add('show');
-
-    modal.setAttribute(
-      'aria-hidden',
-      'false'
-    );
-
+    modal.setAttribute('aria-hidden','false');
   }
-
 }
 
 
