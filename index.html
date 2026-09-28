@@ -1,0 +1,622 @@
+<!doctype html>
+<html lang="es">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="theme-color" content="#0b0b0b" />
+
+  <title>YAPA | Buena comida en Quillacollo</title>
+
+  <meta
+    name="description"
+    content="YAPA · Buena comida en Quillacollo. Mira el menú, arma tu pedido y escríbenos por WhatsApp."
+  />
+
+  <!-- Favicon / logo de pestaña -->
+  <link rel="icon" type="image/png" href="assets/favicon_yapa.png?v=2">
+  <link rel="apple-touch-icon" href="assets/favicon_yapa.png?v=2">
+
+  <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body>
+
+<header class="hero">
+
+  <div class="hero-overlay"></div>
+
+  <div class="topbar wrap">
+
+    <img
+      src="assets/logo_yapa.jpeg"
+      class="brand-logo"
+      alt="YAPA"
+    />
+
+    <span class="status">
+      <span class="dot"></span>
+      Atendiendo
+    </span>
+
+  </div>
+
+  <div class="hero-content wrap">
+
+    <p class="eyebrow">
+      QUILLACOLLO · HECHO AL MOMENTO
+    </p>
+
+    <h1>
+      Buena comida.
+      <br>
+      <span>Sin vueltas.</span>
+    </h1>
+
+    <p class="lead">
+      Lomitos, milanesas, trancapechos, salchipapas y más.
+      Pide fácil y disfruta.
+    </p>
+
+    <div class="hero-actions">
+
+      <a
+        href="#menu"
+        class="btn primary"
+      >
+        Ver menú
+      </a>
+
+      <button
+        class="btn ghost"
+        type="button"
+        onclick="openWhatsApp()"
+      >
+        Pedir por WhatsApp
+      </button>
+
+    </div>
+
+  </div>
+
+</header>
+
+
+<main>
+
+<!-- SERVICIOS -->
+
+<section class="service wrap">
+
+  <!-- PARA LLEVAR -->
+
+  <button
+    class="service-card"
+    type="button"
+    onclick="selectService('Para llevar')"
+  >
+
+    <span class="service-icon">
+
+      <svg
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        aria-hidden="true"
+      >
+        <path d="M5 8h14l-1 11H6L5 8z"></path>
+        <path d="M7 8V5h10v3"></path>
+        <path d="M9 12h6"></path>
+      </svg>
+
+    </span>
+
+    <div>
+      <b>Para llevar</b>
+      <small>Recoge tu pedido</small>
+    </div>
+
+  </button>
+
+
+  <!-- DELIVERY -->
+
+  <button
+    class="service-card"
+    type="button"
+    onclick="selectService('Delivery')"
+  >
+
+    <span class="service-icon">
+
+      <svg
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        aria-hidden="true"
+      >
+        <circle cx="7" cy="18" r="2"></circle>
+        <circle cx="18" cy="18" r="2"></circle>
+        <path d="M9 18h7"></path>
+        <path d="M5 18H3l1-7h7"></path>
+        <path d="M10 11h5l3 4"></path>
+        <path d="M15 15h4"></path>
+      </svg>
+
+    </span>
+
+    <div>
+      <b>Delivery</b>
+      <small>Consulta cobertura</small>
+    </div>
+
+  </button>
+
+
+  <!-- UBICACIÓN -->
+
+  <a
+    class="service-card"
+    target="_blank"
+    rel="noopener"
+    href="https://maps.app.goo.gl/8RzFRi9HuQCXVwfz8"
+  >
+
+    <span class="service-icon">
+
+      <svg
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        aria-hidden="true"
+      >
+        <path d="M12 21s6-5.4 6-11a6 6 0 1 0-12 0c0 5.6 6 11 6 11z"></path>
+        <circle cx="12" cy="10" r="2.5"></circle>
+      </svg>
+
+    </span>
+
+    <div>
+      <b>Quillacollo</b>
+      <small>Ver ubicación</small>
+    </div>
+
+  </a>
+
+</section>
+
+
+<!-- SOBRE YAPA -->
+
+<section class="about wrap">
+
+  <div>
+
+    <p class="eyebrow orange">
+      ESTO ES YAPA
+    </p>
+
+    <h2>
+      Comida que llena.
+      <br>
+      Precio que conviene.
+    </h2>
+
+  </div>
+
+  <p>
+    Preparamos cada pedido al momento.
+    Nuestro estilo es simple:
+    porciones buenas, sabor directo y atención rápida.
+  </p>
+
+</section>
+
+
+<!-- MENÚ -->
+
+<section
+  id="menu"
+  class="menu-section"
+>
+
+  <div class="wrap">
+
+    <div class="section-head">
+
+      <div>
+
+        <p class="eyebrow orange">
+          MENÚ DIGITAL
+        </p>
+
+        <h2>
+          Elige tu YAPA
+        </h2>
+
+      </div>
+
+      <span class="pill">
+        Favoritos
+      </span>
+
+    </div>
+
+
+    <div class="category-scroll">
+
+      <button
+        class="cat active"
+        data-filter="todos"
+      >
+        Todos
+      </button>
+
+      <button
+        class="cat"
+        data-filter="comida"
+      >
+        Comida
+      </button>
+
+      <button
+        class="cat"
+        data-filter="bebida"
+      >
+        Bebidas
+      </button>
+
+    </div>
+
+
+    <div
+      class="product-grid"
+      id="products"
+    ></div>
+
+  </div>
+
+</section>
+
+
+<!-- CÓMO FUNCIONA -->
+
+<section class="why wrap">
+
+  <div class="why-copy">
+
+    <p class="eyebrow orange">
+      YAPA ES SIMPLE
+    </p>
+
+    <h2>
+      Elegís. Pedís.
+      <br>
+      Nosotros cocinamos.
+    </h2>
+
+    <p>
+      Sin menús complicados.
+      Encuentra lo que quieres,
+      agrégalo a tu pedido
+      y escríbenos.
+    </p>
+
+  </div>
+
+
+  <div class="steps">
+
+    <div>
+
+      <span>01</span>
+
+      <b>Elige</b>
+
+      <small>
+        Mira el menú y arma tu pedido.
+      </small>
+
+    </div>
+
+
+    <div>
+
+      <span>02</span>
+
+      <b>Pide</b>
+
+      <small>
+        Envíalo directo por WhatsApp.
+      </small>
+
+    </div>
+
+
+    <div>
+
+      <span>03</span>
+
+      <b>Disfruta</b>
+
+      <small>
+        Lo preparamos al momento.
+      </small>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- CONTACTO -->
+
+<section class="contact">
+
+  <div class="wrap contact-inner">
+
+    <div>
+
+      <p class="eyebrow">
+        ¿HAMBRE?
+      </p>
+
+      <h2>
+        Tu próxima YAPA
+        <br>
+        está a un mensaje.
+      </h2>
+
+    </div>
+
+
+    <div class="contact-actions">
+
+      <button
+        class="btn light"
+        type="button"
+        onclick="openWhatsApp()"
+      >
+        Pedir ahora
+      </button>
+
+
+      <a
+        class="btn outline-light"
+        target="_blank"
+        rel="noopener"
+        href="https://maps.app.goo.gl/8RzFRi9HuQCXVwfz8"
+      >
+        Cómo llegar
+      </a>
+
+    </div>
+
+  </div>
+
+</section>
+
+</main>
+
+
+<!-- FOOTER -->
+
+<footer>
+
+  <div class="wrap footer-inner">
+
+    <div>
+
+      <img
+        src="assets/logo_yapa.jpeg"
+        class="footer-logo"
+        alt="YAPA"
+      />
+
+      <p>
+        Buena comida · Quillacollo
+      </p>
+
+    </div>
+
+
+    <div class="social">
+
+      <a href="#">
+        TikTok
+      </a>
+
+      <a href="#">
+        Facebook
+      </a>
+
+      <a href="#">
+        Instagram
+      </a>
+
+    </div>
+
+  </div>
+
+</footer>
+
+
+<!-- BARRA DEL PEDIDO -->
+
+<div
+  class="cartbar"
+  id="cartbar"
+>
+
+  <div>
+
+    <b id="cartCount">
+      0 productos
+    </b>
+
+    <small id="cartTotal">
+      Bs 0
+    </small>
+
+  </div>
+
+
+  <button
+    type="button"
+    onclick="sendOrder()"
+  >
+    Ver pedido →
+  </button>
+
+</div>
+
+
+<!-- MODAL DEL PEDIDO -->
+
+<div
+  class="modal"
+  id="orderModal"
+  aria-hidden="true"
+>
+
+  <div class="modal-card">
+
+    <button
+      class="close"
+      type="button"
+      onclick="closeModal()"
+      aria-label="Cerrar"
+    >
+      ×
+    </button>
+
+
+    <p class="eyebrow orange">
+      TU PEDIDO
+    </p>
+
+    <h3>
+      Resumen
+    </h3>
+
+
+    <!-- MODALIDAD DEL PEDIDO -->
+
+    <div class="delivery-choice">
+
+      <p>
+        <b>
+          ¿Cómo quieres recibir tu pedido?
+        </b>
+      </p>
+
+
+      <label>
+
+        <input
+          type="radio"
+          name="serviceType"
+          value="Para llevar"
+          checked
+        >
+
+        <span>
+          Para llevar
+        </span>
+
+      </label>
+
+
+      <label>
+
+        <input
+          type="radio"
+          name="serviceType"
+          value="Delivery"
+        >
+
+        <span>
+          Delivery
+        </span>
+
+      </label>
+
+    </div>
+
+
+    <!-- ANTICIPO POR QR -->
+
+    <div class="payment-box">
+
+      <p class="payment-title">
+        Confirma tu pedido con anticipo
+      </p>
+
+      <p class="payment-text">
+        Para confirmar tu pedido, solicitamos un anticipo del 50% por QR.
+        Luego envíanos tu comprobante por WhatsApp.
+      </p>
+
+      <img
+        src="assets/qr_yapa_pago.jpeg"
+        alt="QR de pago YAPA"
+        class="payment-qr"
+      />
+
+      <small class="payment-note">
+        Aplica tanto para Delivery como para Para llevar.
+      </small>
+
+    </div>
+
+
+    <!-- PRODUCTOS ELEGIDOS -->
+
+    <div id="orderItems"></div>
+
+
+    <!-- TOTAL -->
+
+    <div class="order-total">
+
+      <span>
+        Total
+      </span>
+
+      <b id="orderTotal">
+        Bs 0
+      </b>
+
+    </div>
+
+
+    <!-- WHATSAPP -->
+
+    <button
+      class="btn primary full"
+      type="button"
+      onclick="openWhatsApp(true)"
+    >
+      Enviar pedido por WhatsApp
+    </button>
+
+  </div>
+
+</div>
+
+
+<script src="script.js"></script>
+
+</body>
+
+</html>
